@@ -1,9 +1,8 @@
-import os
 import webbrowser
 import datetime
 import wikipedia
 import wolframalpha
-import subprocess
+from AppOpener import open
 
 
 def clean_command(unsanitized_string, keywords):
@@ -20,7 +19,7 @@ def error_string(application):
     )
 
 
-def open_youtube(command):
+def open_youtube():
     webbrowser.open("www.youtube.com")
     return "Opening YouTube."
 
@@ -41,22 +40,10 @@ def search_google(command):
     return f"Searching Google for {command}."
 
 
-def open_dota(path):
-    try:
-        os.startfile(path)
-        return "Opening DOTA 2"
-    except Exception as exception:
-        print(f"Error: {exception}")
-        return error_string("DOTA 2")
-
-
-def open_discord(path):
-    try:
-        os.startfile(path)
-        return "Opening Discord"
-    except Exception as exception:
-        print(f"Error: {exception}")
-        return error_string("Discord")
+def open_app(command):
+    command = clean_command(command, ["open"])
+    open(command)
+    return f"Attempting to open{command}."
 
 
 def calculate(command):

@@ -29,7 +29,7 @@ def interpret_voice():
         sentence = interpreter.recognize_google(
             pre_processed_sentence, language="en-us"
         )
-        print(f"Interpreter: You said: {sentence}. \n")
+        print(f"Interpreter: You said: {sentence}.")
 
     except Exception as exception:
         print(exception)

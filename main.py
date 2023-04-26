@@ -1,16 +1,19 @@
 import os
 from general import *
 from commands import *
+from lights import *
 from dotenv import load_dotenv
+import winsound
 
 # Load Environment Variables from .env File
 load_dotenv()
 ASSISTANT_NAME = os.getenv("ASSISTANT_NAME")
-USER_NAME = os.getenv("USER_NAME")
+NAME = os.getenv("NAME")
+
 
 """
 speak(
-    f"Welcome, {USER_NAME}. I am your personal assistant. I go by the name {ASSISTANT_NAME}."
+    f"Welcome, {NAME}. I am your personal assistant. I go by the name {ASSISTANT_NAME}."
 )
 """
 
@@ -21,15 +24,12 @@ if __name__ == "__main__":
     # Initiate Main Loop
     while True:
         sentence = interpret_voice().lower()
-
         if ASSISTANT_NAME.lower() in sentence:
             if "open" in sentence:
-                if "open discord" in sentence:
-                    speak(open_discord(os.getenv("DISCORD_PATH")))
-                elif "open dota 2" in sentence:
-                    speak(open_dota(os.getenv("DOTA_PATH")))
-                elif "open youtube" in sentence:
-                    speak(open_youtube(sentence))
+                if "open youtube" in sentence:
+                    speak(open_youtube())
+                else:
+                    speak(open_app(sentence))
             elif "date" in sentence:
                 speak(get_date())
             elif "wikipedia" in sentence:
@@ -38,6 +38,10 @@ if __name__ == "__main__":
                 speak(search_google(sentence))
             elif "calculate" in sentence:
                 speak(calculate(sentence))
+            elif "color lights" in sentence:
+                speak(switch_group_lights(sentence))
+            elif "lights" in sentence:
+                speak(switch_all_lights(sentence))
 
         else:
             None
