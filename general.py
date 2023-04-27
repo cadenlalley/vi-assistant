@@ -2,19 +2,22 @@ import pyttsx3
 import os
 import speech_recognition as sr
 
-
+# Initialize TTS Engine with Female voice (voices index 1)
 engine = pyttsx3.init()
 voices = engine.getProperty("voices")
 engine.setProperty("voice", voices[1].id)
 
 
-# TTS Function to Speak the Input Text
+"""Speaks specified string using the TTS engine.
+:param tts_string: String to be spoken.
+"""
 def speak(tts_string):
     engine.say(tts_string)
     engine.runAndWait()
 
 
-# Function to Interpret Voice and Create a String
+"""Voice interpreter used to recognize human language from voice input.
+"""
 def interpret_voice():
     interpreter = sr.Recognizer()
     microphone = sr.Microphone(device_index=int(os.getenv("MICROPHONE_INDEX")))

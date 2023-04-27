@@ -3,7 +3,7 @@ from general import *
 from commands import *
 from lights import *
 from dotenv import load_dotenv
-import winsound
+
 
 # Load Environment Variables from .env File
 load_dotenv()
@@ -11,11 +11,10 @@ ASSISTANT_NAME = os.getenv("ASSISTANT_NAME")
 NAME = os.getenv("NAME")
 
 
-"""
+
 speak(
     f"Welcome, {NAME}. I am your personal assistant. I go by the name {ASSISTANT_NAME}."
 )
-"""
 
 # Clear the Terminal when starting the program
 if __name__ == "__main__":
@@ -36,8 +35,6 @@ if __name__ == "__main__":
                 speak(search_wikipedia(sentence))
             elif "google" in sentence:
                 speak(search_google(sentence))
-            elif "calculate" in sentence:
-                speak(calculate(sentence))
             elif "color lights" in sentence:
                 speak(switch_group_lights(sentence))
             elif "lights" in sentence:
